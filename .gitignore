@@ -1,2 +1,5 @@
 /.gradle/
 /.idea/
+/graphql-client/build/
+/graphql-server/build/
+/build/
