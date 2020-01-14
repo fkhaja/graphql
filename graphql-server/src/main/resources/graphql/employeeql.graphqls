@@ -1,0 +1,43 @@
+type Employee {
+    employeeNumber: ID!,
+    employeeType: Long,
+    supervisor: Employee,
+    serviceCenterId: Long,
+    employeeCode: String,
+    genderCode: String,
+    ethnicityDesc: String,
+    maritalStatusCode: String,
+    badgeCode: String,
+    originalHireDate: String,
+    terminationDate: String,
+    active: Boolean,
+    firstName: String,
+    middleName: String,
+    lastName: String,
+    suffixCode: String,
+    prefixCode: String,
+    addressLine1: String,
+    addressLine2: String,
+    city: String,
+    stateProvinceCode: String,
+    postalCode: String,
+    countryCode: String,
+    homePhoneNumber: String,
+    mobilePhoneNumber: String,
+    workPhoneNumber: String,
+    workPhoneExtensionNumber: String,
+    employeeTitleDescription: String,
+    emergencyContactName: String,
+    emergencyContactPhoneNumber: String,
+    birthDate: String,
+    hazMatTrained: Boolean
+}
+
+type Query {
+	employees(count: Int):[Employee]
+	employee(id: ID):Employee
+}
+
+type Mutation {
+	createEmployee(firstName: String!, lastName: String!): Employee
+}

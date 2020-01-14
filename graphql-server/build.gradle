@@ -1,0 +1,60 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id 'war'
+    id "maven"
+    id 'signing'
+}
+
+group 'com.faisal.graphql'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+springBoot {
+    buildInfo {}
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//    implementation ('org.springframework.boot:spring-boot-starter-data-jdbc')
+    implementation ('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation ('org.springframework.boot:spring-boot-starter-data-rest')
+
+    implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    implementation ('org.springframework.boot:spring-boot-starter-web')
+
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
+
+    //GraphQL
+//    implementation ('com.graphql-java:graphiql-spring-boot-starter:5.0.2')
+//    implementation ('com.graphql-java:graphql-java-tools:5.2.4')
+    compile 'com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.0'
+    // to embed Altair tool
+    runtime 'com.graphql-java-kickstart:altair-spring-boot-starter:6.0.0'
+    // to embed GraphiQL tool
+    runtime 'com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.0'
+    // to embed Voyager tool
+    runtime 'com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.0'
+    // testing facilities
+    testCompile 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:6.0.0'
+
+    //MariaDB
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.2.3'  // Add this to get the MariaDB driver.
+    compile 'ch.vorburger.mariaDB4j:mariaDB4j:2.3.0'
+
+//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
